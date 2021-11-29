@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="icon" href="<%= theme.favicon %>">
+  <title><%= theme.author %> | <%= theme.description %></title>
+  <meta name="description" content="<%= theme.description %>">
+  <meta name="keywords" content="<%-theme.keywords%>">
+  <link rel="stylesheet" href="<%= theme.CDN.mainCss %>">
+  <script src="<%= theme.CDN.regulex %>"></script>
+  <%if(theme.analytics.baidu!=null){%>
+    <!-- 百度统计 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?<%-theme.analytics.baidu%>";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <%}%>
+    <%if(theme.analytics.google!=null){%>
+        <!-- 谷歌统计 -->
+        <script>
+            const script = document.createElement('script')
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=<%-theme.analytics.google%>'
+            script.async = true
+            document.head.appendChild(script)
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', '<%-theme.analytics.google%>');
+        </script>
+    <%}%>
+    <% theme.import.head.forEach(function(head, i){ %> 
+        <%-head%>
+    <% }) %>
+</head>
+
+<body>
+    <% theme.import.top.forEach(function(top, i){ %> 
+        <%-top%>
+    <% }) %>
+  <h1>Regulex <em>JavaScript Regular Expression Visualizer.</em></h1>
+  <div id="inputCt">
+    <div class="re code">
+      <table>
+        <tr>
+          <td class="slash">/</td>
+          <td style="width:auto">
+            <input id="input" class="input" value="^(a|b)*?$" />
+          </td>
+          <td class="slash">/</td>
+          <td style="width:3em" id="flagBox"></td>
+        </tr>
+      </table>
+    </div>
+    <button id="visualIt">渲染</button>
+    <button id="exportIt">导出图片</button>
+    <button id="embedIt">嵌入代码</button>
+    <label><input type="checkbox" name="flag" value="i" />忽略大小写</label>
+    <label><input type="checkbox" name="flag" value="m" />多行模式</label>
+    <label><input type="checkbox" name="flag" value="g" />全局匹配</label>
+  </div>
+  <p id="errorBox" class="code">Error Message</p>
+  <div id="graphCt" class="code"></div>
+
+
+
+
+  <footer>
+    <div class="normal">
+      <span>Created by <a href="https://jex.im/" target="_blank">Jex</a>.</span>
+      <br>
+      <span>Framework <a href="https://github.com/lete114/AWStats" target="_blank">AWStats</a> | Theme <a href="https://github.com/lete114/AWStats-Theme-Regulex" target="_blank">Regulex</a></span>
+    </div>
+    <div class="embed">
+      <a id="embedFooterLink" target="_blank">By Regulex</a>
+      <span id="download">Download</span>
+    </div>
+
+  </footer>
+
+  <script src="<%= theme.CDN.mainJs %>"></script>
+  <% theme.import.bottom.forEach(function(bottom, i){ %>
+    <%-bottom%>
+  <% }) %>
+</body>
+
+</html>
